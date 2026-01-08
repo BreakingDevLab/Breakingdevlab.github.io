@@ -215,6 +215,62 @@
     }
 
     a:focus,button:focus{outline:3px solid rgba(14,165,164,0.12);outline-offset:3px;border-radius:8px}
+
+    /* === Professional polish additions (keeps your style intact) === */
+
+    /* Spacing tokens for consistent rhythm */
+    :root{
+      --space-xs:8px;
+      --space-sm:12px;
+      --space-md:20px;
+      --space-lg:32px;
+      --space-xl:48px;
+    }
+
+    /* Apply rhythm to common blocks */
+    .hero-card, .service-card, .types-modal, .hero-card.small {
+      padding: var(--space-md);
+    }
+
+    /* Slight hierarchy tweaks (no color changes) */
+    h2 { font-size:1.9rem; line-height:1.15; letter-spacing:-0.01em; }
+    h3, .section-title { font-size:1.25rem; line-height:1.2; }
+
+    /* Stabilize services grid and equalize card heights */
+    .services-grid {
+      grid-auto-rows: 1fr;
+      align-items:stretch;
+    }
+    .service-card { display:flex; flex-direction:column; justify-content:flex-start; }
+
+    /* Tighter card content spacing */
+    .service-card .media { margin-bottom: var(--space-sm); }
+    .service-card h4 { margin-bottom: 8px; }
+    .service-card p { margin-top: 0; color:var(--muted); }
+
+    /* Form consistency */
+    .form-grid input, .form-grid textarea, .lead-capture input {
+      min-height:44px; line-height:1.2; padding:10px 12px;
+    }
+    .lead-capture input { min-height:40px; }
+
+    /* Focus and accessibility polish */
+    a:focus, button:focus, input:focus, textarea:focus {
+      outline: 3px solid rgba(14,165,164,0.12);
+      outline-offset:3px;
+      border-radius:8px;
+    }
+
+    /* Modal display handling (controlled via aria-hidden) */
+    .types-backdrop[aria-hidden="false"], .modal-backdrop[aria-hidden="false"] {
+      display:flex;
+    }
+
+    /* Small responsive tweaks */
+    @media (max-width:980px){
+      .hero { grid-template-columns: 1fr; gap:20px; padding:32px 0; }
+      .hero-card { padding:18px; }
+    }
   </style>
 </head>
 
@@ -242,7 +298,7 @@
     </div>
   </header>
 
-  <main id="main" class="container" role="main">
+<main id="main" class="container" role="main">
     <section class="hero" aria-labelledby="hero-title">
       <div class="hero-card" aria-describedby="hero-desc">
         <h2 id="hero-title">We build secure, elegant digital experiences</h2>
@@ -298,16 +354,19 @@
       <h3 id="services-heading" class="section-title" style="color:var(--accent);margin:0 0 12px;font-size:1.4rem">Our Services</h3>
 
       <div class="services-grid" role="list">
+        <!-- All service cards now share the same structure and behavior.
+             Each card is a button with its own data-service and aria-controls where appropriate. -->
+
         <article class="service-card" role="listitem" aria-labelledby="s1-title">
-          <button id="website-types-btn" style="all:unset;cursor:pointer;color:inherit;text-align:left;display:block" type="button" aria-haspopup="dialog" aria-controls="website-types-backdrop" aria-expanded="false">
+          <button id="s1-btn" style="all:unset;cursor:pointer;color:inherit;text-align:left;display:block" type="button" data-service="website-creation:business" data-service-title="Websites for Small Businesses and Enterprises" aria-haspopup="dialog" aria-controls="website-types-backdrop" aria-expanded="false">
             <span class="media" aria-hidden="true"></span>
             <h4 id="s1-title">Websites for Small Businesses and Enterprises</h4>
-            <p>We design and build fast, mobile-first websites that convert visitors into customers — tailored to your brand and ready to scale as you grow.</p>
+            <p>Fast, mobile-first websites that convert visitors into customers — tailored to your brand and built to scale.</p>
           </button>
         </article>
 
         <article class="service-card" role="listitem" aria-labelledby="s3-title">
-          <button id="brand-types-btn" style="all:unset;cursor:pointer;color:inherit;text-align:left;display:block" type="button" aria-haspopup="dialog" aria-controls="brand-types-backdrop" aria-expanded="false">
+          <button id="s3-btn" style="all:unset;cursor:pointer;color:inherit;text-align:left;display:block" type="button" data-service="brand-ux" data-service-title="Brand & UX Design" aria-haspopup="dialog" aria-controls="brand-types-backdrop" aria-expanded="false">
             <span class="media" aria-hidden="true"></span>
             <h4 id="s3-title">Brand & UX Design</h4>
             <p>Craft a memorable brand and intuitive user experience that builds trust, reduces friction, and increases conversions across devices.</p>
@@ -315,15 +374,15 @@
         </article>
 
         <article class="service-card" role="listitem" aria-labelledby="s4-title">
-          <button id="managed-types-btn" style="all:unset;cursor:pointer;color:inherit;text-align:left;display:block" type="button" aria-haspopup="dialog" aria-controls="managed-types-backdrop" aria-expanded="false">
+          <button id="s4-btn" style="all:unset;cursor:pointer;color:inherit;text-align:left;display:block" type="button" data-service="managed-hosting" data-service-title="Managed Hosting & Maintenance" aria-haspopup="dialog" aria-controls="managed-types-backdrop" aria-expanded="false">
             <span class="media" aria-hidden="true"></span>
             <h4 id="s4-title">Managed Hosting & Maintenance</h4>
-            <p>Keep your site fast and secure with managed hosting, automated backups, and proactive maintenance so you can focus on your business.</p>
+            <p>Managed hosting, automated backups, and proactive maintenance to keep your site fast, secure, and up-to-date.</p>
           </button>
         </article>
 
         <article class="service-card" role="listitem" aria-labelledby="s5-title">
-          <button id="hardware-types-btn" style="all:unset;cursor:pointer;color:inherit;text-align:left;display:block" type="button" aria-haspopup="dialog" aria-controls="hardware-types-backdrop" aria-expanded="false">
+          <button id="s5-btn" style="all:unset;cursor:pointer;color:inherit;text-align:left;display:block" type="button" data-service="hardware-support" data-service-title="Hardware Repairs & On-site Support" aria-haspopup="dialog" aria-controls="hardware-types-backdrop" aria-expanded="false">
             <span class="media" aria-hidden="true"></span>
             <h4 id="s5-title">Hardware Repairs & On‑site Support</h4>
             <p>Fast, professional repairs and on‑site technical support for laptops, desktops and small office networks — minimal downtime guaranteed.</p>
@@ -331,19 +390,19 @@
         </article>
 
         <article class="service-card" role="listitem" aria-labelledby="s6-title">
-          <a href="support-plans.html" style="color:inherit;text-decoration:none;">
+          <button id="s6-btn" style="all:unset;cursor:pointer;color:inherit;text-align:left;display:block" type="button" data-service="support-plans" data-service-title="Support Plans for Businesses" aria-haspopup="dialog" aria-controls="support-plans-backdrop" aria-expanded="false">
             <span class="media" aria-hidden="true"></span>
             <h4 id="s6-title">Support Plans for Businesses</h4>
-            <p>Choose a support plan that fits your needs — priority response, regular updates, and strategic IT guidance to keep operations running smoothly.</p>
-          </a>
+            <p>Priority response, regular updates, and strategic IT guidance — choose a plan that keeps operations running smoothly.</p>
+          </button>
         </article>
 
         <article class="service-card" role="listitem" aria-labelledby="s2-title">
-          <a href="ecommerce.html" style="color:inherit;text-decoration:none;">
+          <button id="s2-btn" style="all:unset;cursor:pointer;color:inherit;text-align:left;display:block" type="button" data-service="ecommerce" data-service-title="E-commerce Solutions" aria-haspopup="dialog" aria-controls="ecommerce-backdrop" aria-expanded="false">
             <span class="media" aria-hidden="true"></span>
             <h4 id="s2-title">E‑commerce Solutions</h4>
-            <p>Launch a secure, conversion‑focused online store with smooth checkout, payment integrations, and tools to grow your sales quickly.</p>
-          </a>
+            <p>Secure, conversion-focused online stores with optimized checkout, payment integrations, and tools to grow your sales quickly.</p>
+          </button>
         </article>
       </div>
     </section>
@@ -372,6 +431,9 @@
               <label for="pq-project">Project summary</label>
               <textarea id="pq-project" name="project" rows="5" placeholder="Describe your project, goals, timeline, and budget (if known)"></textarea>
             </div>
+
+            <!-- Hidden field to capture which service the user clicked -->
+            <input type="hidden" name="selected_service" id="selected_service" value="" />
 
             <input type="text" name="hp_page" id="hp_page" autocomplete="off" tabindex="-1" hidden aria-hidden="true" />
 
@@ -455,7 +517,235 @@
     </div>
   </div>
 
-  <!-- Keep other modals (brand, managed, hardware, quote, contact) unchanged below this point -->
+  <!-- Brand modal (keeps original structure) -->
+  <div id="brand-types-backdrop" class="brand-backdrop" aria-hidden="true">
+    <div class="brand-modal" role="dialog" aria-modal="true" aria-labelledby="brand-types-title" aria-describedby="brand-types-desc">
+      <header>
+        <div>
+          <h3 id="brand-types-title">Brand & UX Design</h3>
+          <p id="brand-types-desc" class="lead">Brand strategy, visual identity, and UX design tailored to your audience and goals.</p>
+        </div>
+        <div>
+          <button id="brand-types-close" class="btn-outline" type="button" aria-label="Close brand types">Close</button>
+        </div>
+      </header>
+
+      <div class="brand-list" role="list">
+        <div class="brand-item" role="listitem">
+          <h5>Identity & Naming</h5>
+          <p>Logo, color systems, and naming that reflect your positioning and scale across touchpoints.</p>
+          <div class="brand-actions">
+            <button class="cta-btn start-quote" data-service="brand:identity" type="button">Start a Quote</button>
+          </div>
+        </div>
+
+        <div class="brand-item" role="listitem">
+          <h5>UX Research & Prototyping</h5>
+          <p>User research, wireframes, and interactive prototypes to validate flows before development.</p>
+          <div class="brand-actions">
+            <button class="cta-btn start-quote" data-service="brand:ux" type="button">Start a Quote</button>
+          </div>
+        </div>
+
+        <div class="brand-item" role="listitem">
+          <h5>Design Systems</h5>
+          <p>Reusable components and documentation to keep your product consistent and development-friendly.</p>
+          <div class="brand-actions">
+            <button class="cta-btn start-quote" data-service="brand:design-system" type="button">Start a Quote</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Managed modal (keeps original structure) -->
+  <div id="managed-types-backdrop" class="managed-backdrop" aria-hidden="true">
+    <div class="managed-modal" role="dialog" aria-modal="true" aria-labelledby="managed-types-title" aria-describedby="managed-types-desc">
+      <header>
+        <div>
+          <h3 id="managed-types-title">Managed Hosting & Maintenance</h3>
+          <p id="managed-types-desc" class="lead">Hosting, backups, monitoring, and maintenance plans to keep your site healthy.</p>
+        </div>
+        <div>
+          <button id="managed-types-close" class="btn-outline" type="button" aria-label="Close managed types">Close</button>
+        </div>
+      </header>
+
+      <div class="managed-list" role="list">
+        <div class="managed-item" role="listitem">
+          <h5>Managed Hosting</h5>
+          <p>Fast, secure hosting with automated backups and monitoring.</p>
+          <div class="managed-actions">
+            <button class="cta-btn start-quote" data-service="managed:hosting" type="button">Start a Quote</button>
+          </div>
+        </div>
+
+        <div class="managed-item" role="listitem">
+          <h5>Maintenance Plans</h5>
+          <p>Regular updates, security patches, and performance tuning.</p>
+          <div class="managed-actions">
+            <button class="cta-btn start-quote" data-service="managed:maintenance" type="button">Start a Quote</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hardware modal (keeps original structure) -->
+  <div id="hardware-types-backdrop" class="hardware-backdrop" aria-hidden="true">
+    <div class="hardware-modal" role="dialog" aria-modal="true" aria-labelledby="hardware-types-title" aria-describedby="hardware-types-desc">
+      <header>
+        <div>
+          <h3 id="hardware-types-title">Hardware Repairs & On-site Support</h3>
+          <p id="hardware-types-desc" class="lead">Repairs, diagnostics, and on-site support for small offices and home offices.</p>
+        </div>
+        <div>
+          <button id="hardware-types-close" class="btn-outline" type="button" aria-label="Close hardware types">Close</button>
+        </div>
+      </header>
+
+      <div class="hardware-list" role="list">
+        <div class="hardware-item" role="listitem">
+          <h5>Device Repair</h5>
+          <p>Screen, battery, and component repairs with warranty options.</p>
+          <div class="hardware-actions">
+            <button class="cta-btn start-quote" data-service="hardware:repair" type="button">Start a Quote</button>
+          </div>
+        </div>
+
+        <div class="hardware-item" role="listitem">
+          <h5>On-site Support</h5>
+          <p>On-site troubleshooting and setup for small office networks and devices.</p>
+          <div class="hardware-actions">
+            <button class="cta-btn start-quote" data-service="hardware:onsite" type="button">Start a Quote</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Keep other modals (support-plans, ecommerce, quote, contact) unchanged below this point -->
+
+  <!-- Interaction script: open modal when aria-controls points to a backdrop, otherwise go to quote -->
+  <script>
+    (function(){
+      // Helper: open backdrop and trap focus inside its dialog
+      function openBackdrop(backdrop) {
+        if (!backdrop) return;
+        backdrop.setAttribute('aria-hidden','false');
+        document.body.style.overflow = 'hidden';
+        const dialog = backdrop.querySelector('[role="dialog"]');
+        if (!dialog) return;
+        // focus first focusable element inside dialog
+        const focusable = dialog.querySelectorAll('a,button,input,textarea,select,[tabindex]:not([tabindex="-1"])');
+        if (focusable.length) focusable[0].focus();
+      }
+
+      // Helper: close backdrop
+      function closeBackdrop(backdrop) {
+        if (!backdrop) return;
+        backdrop.setAttribute('aria-hidden','true');
+        document.body.style.overflow = '';
+        // return focus to opener if possible
+      }
+
+      // Main handler for service-card buttons
+      function onServiceClick(e){
+        const btn = e.currentTarget;
+        const serviceKey = btn.getAttribute('data-service') || '';
+        const serviceTitle = btn.getAttribute('data-service-title') || '';
+        const selectedInput = document.getElementById('selected_service');
+        if (selectedInput) selectedInput.value = serviceKey;
+
+        // If the button has aria-controls and that element exists and is a backdrop, open it
+        const controlsId = btn.getAttribute('aria-controls');
+        if (controlsId) {
+          const backdrop = document.getElementById(controlsId);
+          if (backdrop && (backdrop.classList.contains('types-backdrop') || backdrop.classList.contains('brand-backdrop') || backdrop.classList.contains('managed-backdrop') || backdrop.classList.contains('hardware-backdrop') || backdrop.classList.contains('modal-backdrop'))) {
+            openBackdrop(backdrop);
+            return; // stop here — open modal flow
+          }
+        }
+
+        // Fallback: scroll to quote form (legacy behavior)
+        const projectField = document.getElementById('pq-project');
+        if (projectField) {
+          projectField.placeholder = serviceTitle
+            ? `Project summary for: ${serviceTitle} — describe goals, timeline, budget (if known)`
+            : 'Describe your project, goals, timeline, and budget (if known)';
+        }
+        const nameInput = document.getElementById('pq-name');
+        if (nameInput) {
+          nameInput.scrollIntoView({behavior:'smooth', block:'center'});
+          setTimeout(()=>{ try { nameInput.focus(); } catch(e){} }, 420);
+        }
+      }
+
+      // Attach handler to all service-card buttons
+      document.querySelectorAll('.service-card button').forEach(btn=>{
+        btn.addEventListener('click', onServiceClick);
+      });
+
+      // Wire modal close buttons
+      document.querySelectorAll('.types-modal .btn-outline, .brand-modal .btn-outline, .managed-modal .btn-outline, .hardware-modal .btn-outline').forEach(closeBtn=>{
+        closeBtn.addEventListener('click', function(){
+          const backdrop = closeBtn.closest('.types-backdrop, .brand-backdrop, .managed-backdrop, .hardware-backdrop, .modal-backdrop');
+          closeBackdrop(backdrop);
+          // return focus to opener if possible
+          const opener = document.querySelector('[aria-controls="'+(backdrop && backdrop.id)+'"]');
+          if (opener) opener.focus();
+        });
+      });
+
+      // Close when clicking backdrop outside dialog
+      document.querySelectorAll('.types-backdrop, .brand-backdrop, .managed-backdrop, .hardware-backdrop, .modal-backdrop').forEach(backdrop=>{
+        backdrop.addEventListener('click', function(e){
+          if (e.target !== backdrop) return;
+          closeBackdrop(backdrop);
+          const opener = document.querySelector('[aria-controls="'+backdrop.id+'"]');
+          if (opener) opener.focus();
+        });
+      });
+
+      // Start-quote buttons inside modals should close modal and scroll to quote form
+      document.querySelectorAll('.start-quote').forEach(btn=>{
+        btn.addEventListener('click', function(){
+          const serviceKey = btn.getAttribute('data-service') || '';
+          const selectedInput = document.getElementById('selected_service');
+          if (selectedInput) selectedInput.value = serviceKey;
+          // close parent backdrop if any
+          const backdrop = btn.closest('.types-backdrop, .brand-backdrop, .managed-backdrop, .hardware-backdrop, .modal-backdrop');
+          if (backdrop) closeBackdrop(backdrop);
+          // scroll to quote form
+          const nameInput = document.getElementById('pq-name');
+          if (nameInput) {
+            nameInput.scrollIntoView({behavior:'smooth', block:'center'});
+            setTimeout(()=>{ try { nameInput.focus(); } catch(e){} }, 420);
+          }
+        });
+      });
+
+      // Keep existing form submit enhancement (show success message)
+      document.querySelectorAll('form').forEach(form=>{
+        form.addEventListener('submit', function(){
+          const success = form.closest('.hero-card')?.querySelector('.success-message') || document.getElementById('success');
+          if (success) {
+            success.style.display = 'block';
+            try { success.focus(); } catch(e){}
+          }
+        });
+      });
+
+      // Small accessibility: ensure skip link works and is visible on focus
+      const skip = document.querySelector('.skip-link');
+      if (skip) {
+        skip.addEventListener('click', function(){
+          const main = document.getElementById('main');
+          if (main) main.setAttribute('tabindex','-1'), main.focus();
+        });
+      }
+    })();
+  </script>
 
   <!-- External accessibility + tiny fixes script -->
   <script src="/assets/js/tiny-fixes.js" defer></script>
