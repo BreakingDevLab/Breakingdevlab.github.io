@@ -192,9 +192,36 @@
     .modal-nav a, .modal-nav button { color:var(--muted); background:transparent; border:1px solid rgba(255,255,255,0.03); padding:8px 10px; border-radius:8px; text-decoration:none; cursor:pointer; font-weight:700; }
     .modal-nav a:hover, .modal-nav button:hover { color:var(--text); background:rgba(255,255,255,0.02); transform:translateY(-2px); }
 
-    @media (max-width:760px){
-      .types-modal,.brand-modal,.managed-modal,.hardware-modal,.modal{padding:16px;max-height:92vh}
-      .types-list,.brand-list,.managed-list,.hardware-list{gap:10px}
+    /* About-specific styles (from About2.html) */
+    .about-hero{padding:56px 0}
+    .hero-grid{display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center}
+    .hero-copy h1{color:var(--accent);margin:0 0 8px;font-size:2rem}
+    .lead{color:var(--muted);margin:0 0 18px;font-size:1.02rem}
+    .hero-media img{width:100%;border-radius:10px;object-fit:cover;display:block;box-shadow:var(--card-shadow)}
+
+    .values-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:24px 0}
+    .values-grid article{background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));padding:18px;border-radius:10px;border:1px solid rgba(255,255,255,0.03)}
+    .values-grid h3{margin:0 0 8px;color:var(--accent)}
+
+    .trust{padding:18px 0}
+    .trust-logos{display:flex;gap:18px;align-items:center;opacity:.95;margin-bottom:12px}
+    .trust-logos img{height:36px;object-fit:contain;filter:grayscale(1) opacity(.9)}
+    .testimonial{margin:0;color:var(--muted);font-style:italic}
+
+    .services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;margin-top:12px}
+    .final-cta{display:flex;justify-content:center;padding:28px 0}
+
+    /* Contact section styles */
+    .contact-section { padding:48px 0; }
+    .contact-grid { display:grid; grid-template-columns:1fr 420px; gap:28px; align-items:start; }
+    .contact-card { background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01)); padding:20px; border-radius:10px; border:1px solid rgba(255,255,255,0.03); }
+    .contact-card label { display:block; margin-bottom:6px; color:var(--muted); font-weight:600; }
+    .contact-card input, .contact-card textarea { width:100%; padding:10px; border-radius:8px; border:1px solid rgba(255,255,255,0.04); background:rgba(255,255,255,0.02); color:var(--text); }
+    .contact-info { color:var(--muted); font-size:0.98rem; line-height:1.5; }
+
+    @media (max-width:960px){
+      .hero-grid, .contact-grid { grid-template-columns:1fr; }
+      .values-grid{grid-template-columns:1fr}
     }
 
     /* Skip link */
@@ -240,8 +267,8 @@
         <a href="#services" class="btn-outline" title="Services">Services</a>
         <a href="#about" class="btn-outline" title="About">About</a>
 
-        <button id="contact-btn" class="btn-outline" type="button" aria-haspopup="dialog" aria-controls="contact-backdrop" aria-expanded="false">Contact</button>
-        <a href="contact.html" style="display:none" id="contact-page-link">Contact page</a>
+        <!-- Contact now points to the in-page contact section (same flow as About) -->
+        <a href="#contact" class="btn-outline" title="Contact">Contact</a>
       </nav>
     </div>
   </header>
@@ -354,33 +381,138 @@
 
     <div class="divider" role="separator" aria-hidden="true"></div>
 
-    <!-- About section integrated into index.html -->
-    <section id="about" aria-labelledby="about-heading" style="margin-bottom:28px">
-      <div class="container">
-        <h3 id="about-heading" class="section-title" style="color:var(--accent);margin:0 0 12px;font-size:1.4rem">About Breaking Dev Lab</h3>
-        <div class="hero-card small">
-          <p style="color:var(--muted);margin:0 0 12px">
-            Breaking Dev Lab is a small, focused team building modern, secure, and elegant digital solutions.
-            We combine design, engineering, and operational best practices to deliver websites, e-commerce platforms,
-            and IT support that help businesses grow with confidence.
-          </p>
+    <!-- About section (merged content) -->
+    <section id="about" aria-labelledby="about-heading" class="about-hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <h1>We build modern, secure, and elegant digital solutions</h1>
+          <p class="lead">Design, e-commerce, repairs, and support — practical websites that convert and scale. We combine creative design with technical excellence to produce fast, secure, and user-friendly digital experiences.</p>
+          <p><a class="cta-btn" href="#contact">Get a quote</a></p>
+        </div>
 
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
-            <div>
-              <h4 style="color:var(--accent);margin:0 0 8px">Our approach</h4>
-              <p style="color:var(--muted);margin:0">We prioritize clarity, performance, and security. We design for users first and build for scale.</p>
-            </div>
-            <div>
-              <h4 style="color:var(--accent);margin:0 0 8px">What we offer</h4>
-              <p style="color:var(--muted);margin:0">Web design, e-commerce, managed hosting, hardware repairs, and support plans tailored to your needs.</p>
-            </div>
+        <div class="hero-media" aria-hidden="true">
+          <img src="/images/team-hero.jpg" alt="Team collaborating on a website design">
+        </div>
+      </div>
+
+      <div class="container about-values" aria-labelledby="values-heading">
+        <h2 id="values-heading" style="color:var(--accent);margin-top:18px;">What we do</h2>
+        <div class="values-grid">
+          <article>
+            <h3>Our approach</h3>
+            <p>Strategy-first design, accessibility, and measurable outcomes. We prioritize clarity, performance, and long-term maintainability.</p>
+          </article>
+
+          <article>
+            <h3>Who we serve</h3>
+            <p>Small businesses, enterprises, legal firms, NGOs, and event-service providers — tailored solutions for each sector's needs.</p>
+          </article>
+
+          <article>
+            <h3>Why choose us</h3>
+            <p>Fast, secure, and easy-to-manage sites with clear ROI and ongoing support to keep your site performing.</p>
+          </article>
+        </div>
+      </div>
+
+      <div class="container trust" aria-labelledby="trust-heading">
+        <h2 id="trust-heading" style="color:var(--accent);margin-top:18px;">Trusted by</h2>
+        <div class="trust-logos" role="list" aria-label="Client logos">
+          <img src="/images/logo-client1.svg" alt="Client 1 logo">
+          <img src="/images/logo-client2.svg" alt="Client 2 logo">
+          <img src="/images/logo-client3.svg" alt="Client 3 logo">
+        </div>
+
+        <blockquote class="testimonial">“Breaking Dev Lab delivered a fast, accessible site that doubled our leads.” — Client Name</blockquote>
+      </div>
+
+      <div class="container services" aria-labelledby="services-heading">
+        <h2 id="services-heading" style="color:var(--accent);margin-top:18px;">Core services</h2>
+        <div class="services-grid">
+          <div class="service-card">
+            <h4>Web Design</h4>
+            <p>Clear messaging, conversion-focused layouts, and accessible interfaces.</p>
           </div>
 
-          <div style="margin-top:14px;display:flex;gap:10px;justify-content:flex-end">
-            <button class="cta-btn start-quote" data-service="about:consult" type="button">Start a Quote</button>
-            <a href="#services" class="btn-outline">View Services</a>
+          <div class="service-card">
+            <h4>Managed Hosting</h4>
+            <p>Secure, monitored environments with performance and backups handled for you.</p>
+          </div>
+
+          <div class="service-card">
+            <h4>Support & Maintenance</h4>
+            <p>Ongoing updates, security patches, and rapid response to keep your site healthy.</p>
           </div>
         </div>
+      </div>
+
+      <div class="container final-cta" aria-label="Call to action">
+        <a class="cta-btn" href="#contact">Request a free consultation</a>
+      </div>
+    </section>
+
+    <div class="divider" role="separator" aria-hidden="true"></div>
+
+    <!-- Contact section (merged from contact.html) -->
+    <section id="contact" class="contact-section" aria-labelledby="contact-heading">
+      <div class="container contact-grid">
+        <div class="contact-card" aria-labelledby="contact-heading">
+          <h3 id="contact-heading" style="color:var(--accent);margin-top:0;">Contact Us</h3>
+          <p class="lead" style="margin-top:0;color:var(--muted)">Send a message or request a quote — we’ll reply within 1–2 business days.</p>
+
+          <form id="contact-page-form" action="/api/lead" method="post" class="form-grid" aria-label="Contact form" novalidate>
+            <div>
+              <label for="cp-name">Name</label>
+              <input id="cp-name" name="name" type="text" required placeholder="Your full name" />
+              <div class="field-error" aria-live="polite"></div>
+            </div>
+
+            <div>
+              <label for="cp-email">Email</label>
+              <input id="cp-email" name="email" type="email" required placeholder="you@example.com" />
+              <div class="field-error" aria-live="polite"></div>
+            </div>
+
+            <div class="full">
+              <label for="cp-message">Message</label>
+              <textarea id="cp-message" name="message" rows="6" placeholder="How can we help?"></textarea>
+            </div>
+
+            <input type="hidden" name="selected_service" id="selected_service" value="" />
+
+            <div class="full form-actions">
+              <button type="submit" class="cta-btn">Send message</button>
+            </div>
+
+            <div class="full">
+              <small style="color:var(--muted)">We respect your privacy. By submitting you agree to be contacted about your request.</small>
+            </div>
+          </form>
+
+          <div id="contact-success" class="success-message" role="status" aria-live="polite" tabindex="-1">Thanks — your message has been received. We'll reply within 1–2 business days.</div>
+        </div>
+
+        <aside class="contact-info" aria-label="Contact information">
+          <div style="margin-bottom:12px">
+            <strong style="color:var(--accent)">Office</strong>
+            <div style="color:var(--muted)">Johannesburg, South Africa</div>
+          </div>
+
+          <div style="margin-bottom:12px">
+            <strong style="color:var(--accent)">Email</strong>
+            <div style="color:var(--muted)">hello@breakingdevlab.example</div>
+          </div>
+
+          <div style="margin-bottom:12px">
+            <strong style="color:var(--accent)">Phone</strong>
+            <div style="color:var(--muted)">+27 11 000 0000</div>
+          </div>
+
+          <div>
+            <strong style="color:var(--accent)">Hours</strong>
+            <div style="color:var(--muted)">Mon–Fri 09:00–17:00 SAST</div>
+          </div>
+        </aside>
       </div>
     </section>
 
@@ -409,7 +541,7 @@
               <textarea id="pq-project" name="project" rows="5" placeholder="Describe your project, goals, timeline, and budget (if known)"></textarea>
             </div>
 
-            <input type="hidden" name="selected_service" id="selected_service" value="" />
+            <input type="hidden" name="selected_service" id="selected_service_quote" value="" />
 
             <input type="text" name="hp_page" id="hp_page" autocomplete="off" tabindex="-1" hidden aria-hidden="true" />
 
@@ -428,81 +560,11 @@
     </section>
   </main>
 
-  <!-- Website types modal -->
-  <div id="website-types-backdrop" class="types-backdrop" aria-hidden="true">
-    <div class="types-modal" role="dialog" aria-modal="true" aria-labelledby="website-types-title" aria-describedby="website-types-desc">
-      <header>
-        <div>
-          <h3 id="website-types-title">Types of Websites We Build</h3>
-          <p id="website-types-desc" class="lead"> <div class="hero-card small">
-          <p style="color:var(--muted);margin:0 0 12px">
-            Breaking Dev Lab is a small, focused team building modern, secure, and elegant digital solutions.
-            We combine design, engineering, and operational best practices to deliver websites, e-commerce platforms,
-            and IT support that help businesses grow with confidence.
-          </p>
-
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
-            <div>
-              <h4 style="color:var(--accent);margin:0 0 8px">Our approach</h4>
-              <p style="color:var(--muted);margin:0">We prioritize clarity, performance, and security. We design for users first and build for scale.</p>
-            </div>
-            <div>
-              <h4 style="color:var(--accent);margin:0 0 8px">What we offer</h4>
-              <p style="color:var(--muted);margin:0">Web design, e-commerce, managed hosting, hardware repairs, and support plans tailored to your needs.</p>
-            </div>
-          </div>
-
-          <div style="margin-top:14px;display:flex;gap:10px;justify-content:flex-end">
-            <button class="cta-btn start-quote" data-service="about:consult" type="button">Start a Quote</button>
-            <a href="#services" class="btn-outline">View Services</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <div class="divider" role="separator" aria-hidden="true"></div>
-
-    <section aria-labelledby="quote-heading" style="margin-bottom:28px">
-      <div class="container">
-        <h3 id="quote-heading" class="section-title" style="color:var(--accent);margin:0 0 12px;font-size:1.4rem">Request a Quote</h3>
-
-        <div class="hero-card small">
-          <form id="page-quote-form" class="form-grid" action="/api/quote" method="post" aria-label="Get a quote form" novalidate>
-            <div>
-              <label for="pq-name">Name</label>
-              <input id="pq-name" name="name" type="text" required placeholder="Your full name" />
-              <div class="field-error" aria-live="polite"></div>
-            </div>
-
-            <div>
-              <label for="pq-email">Email</label>
-              <input id="pq-email" name="email" type="email" required placeholder="you@example.com" />
-              <div class="field-error" aria-live="polite"></div>
-            </div>
-
-            <div class="full">
-              <label for="pq-project">Project summary</label>
-              <textarea id="pq-project" name="project" rows="5" placeholder="Describe your project, goals, timeline, and budget (if known)"></textarea>
-            </div>
-
-            <input type="hidden" name="selected_service" id="selected_service" value="" />
-
-            <input type="text" name="hp_page" id="hp_page" autocomplete="off" tabindex="-1" hidden aria-hidden="true" />
-
-            <div class="full form-actions">
-              <button type="submit" class="cta-btn">Request quote</button>
-            </div>
-
-            <div class="full">
-              <small style="color:var(--muted)">We respect your privacy. By submitting you agree to be contacted about your request.</small>
-            </div>
-          </form>
-
-          <div class="success-message" id="success" role="status" aria-live="polite" tabindex="-1">Thanks — your request has been received. We'll reply within 1–2 business days.</div>
-        </div>
-      </div>
-    </section>
-  </main>
+  <footer style="padding:20px 0;text-align:center;color:var(--muted);">
+    <div class="container">
+      <p>&copy; 2025 Breaking Dev Lab. All rights reserved.</p>
+    </div>
+  </footer>
 
   <!-- Website types modal -->
   <div id="website-types-backdrop" class="types-backdrop" aria-hidden="true">
@@ -571,6 +633,7 @@
         <button data-scroll-target="top" class="btn-outline">Home</button>
         <button data-scroll-target="services" class="btn-outline">Services</button>
         <button data-scroll-target="about" class="btn-outline">About</button>
+        <button data-scroll-target="contact" class="btn-outline">Contact</button>
       </div>
     </div>
   </div>
@@ -618,6 +681,7 @@
         <button data-scroll-target="top" class="btn-outline">Home</button>
         <button data-scroll-target="services" class="btn-outline">Services</button>
         <button data-scroll-target="about" class="btn-outline">About</button>
+        <button data-scroll-target="contact" class="btn-outline">Contact</button>
       </div>
     </div>
   </div>
@@ -657,6 +721,7 @@
         <button data-scroll-target="top" class="btn-outline">Home</button>
         <button data-scroll-target="services" class="btn-outline">Services</button>
         <button data-scroll-target="about" class="btn-outline">About</button>
+        <button data-scroll-target="contact" class="btn-outline">Contact</button>
       </div>
     </div>
   </div>
@@ -696,45 +761,7 @@
         <button data-scroll-target="top" class="btn-outline">Home</button>
         <button data-scroll-target="services" class="btn-outline">Services</button>
         <button data-scroll-target="about" class="btn-outline">About</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Contact modal/backdrop -->
-  <div id="contact-backdrop" class="modal-backdrop" aria-hidden="true">
-    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="contact-title" aria-describedby="contact-desc">
-      <header>
-        <div>
-          <h3 id="contact-title">Contact Us</h3>
-          <p id="contact-desc" class="lead">Send a message or request a quote — we’ll reply within 1–2 business days.</p>
-        </div>
-        <div>
-          <button id="contact-close" class="btn-outline" type="button" aria-label="Close contact">Close</button>
-        </div>
-      </header>
-
-      <form id="contact-modal-form" action="/api/lead" method="post" class="form-grid" aria-label="Contact form" novalidate>
-        <div>
-          <label for="c-name">Name</label>
-          <input id="c-name" name="name" type="text" required placeholder="Your full name" />
-        </div>
-        <div>
-          <label for="c-email">Email</label>
-          <input id="c-email" name="email" type="email" required placeholder="you@example.com" />
-        </div>
-        <div class="full">
-          <label for="c-message">Message</label>
-          <textarea id="c-message" name="message" rows="5" placeholder="How can we help?"></textarea>
-        </div>
-        <div class="full form-actions">
-          <button type="submit" class="cta-btn">Send message</button>
-        </div>
-      </form>
-
-      <div class="modal-nav">
-        <button data-scroll-target="top" class="btn-outline">Home</button>
-        <button data-scroll-target="services" class="btn-outline">Services</button>
-        <button data-scroll-target="about" class="btn-outline">About</button>
+        <button data-scroll-target="contact" class="btn-outline">Contact</button>
       </div>
     </div>
   </div>
@@ -841,24 +868,7 @@
         });
       });
 
-      // Contact button opener/closer
-      const contactBtn = document.getElementById('contact-btn');
-      if (contactBtn) {
-        contactBtn.addEventListener('click', function(){
-          const backdrop = document.getElementById('contact-backdrop');
-          if (backdrop) openBackdrop(backdrop, contactBtn);
-        });
-      }
-      const contactClose = document.getElementById('contact-close');
-      if (contactClose) {
-        contactClose.addEventListener('click', function(){
-          const backdrop = document.getElementById('contact-backdrop');
-          closeBackdrop(backdrop);
-          if (contactBtn) contactBtn.focus();
-        });
-      }
-
-      // Modal nav buttons: scroll to Home/Services/About
+      // Modal nav buttons: scroll to Home/Services/About/Contact
       document.querySelectorAll('.modal-nav button[data-scroll-target]').forEach(btn=>{
         btn.addEventListener('click', function(){
           const target = btn.getAttribute('data-scroll-target');
@@ -884,17 +894,14 @@
         });
       });
 
-      // Modal nav "About" buttons (in case any are links)
-      document.querySelectorAll('.modal-nav button[data-scroll-target="about"], .modal-nav a[href="#about"]').forEach(el=>{
-        el.addEventListener('click', function(){
-          // handled above for buttons; links will navigate in-page naturally
-        });
-      });
-
       // Form submit enhancement (show success message)
       document.querySelectorAll('form').forEach(form=>{
-        form.addEventListener('submit', function(){
-          const success = form.closest('.hero-card')?.querySelector('.success-message') || document.getElementById('success');
+        form.addEventListener('submit', function(e){
+          // Prevent actual navigation during demo/testing if action not available
+          // Remove the next line in production if you have a working backend endpoint
+          // e.preventDefault();
+
+          const success = form.id === 'contact-page-form' ? document.getElementById('contact-success') : (form.closest('.hero-card')?.querySelector('.success-message') || document.getElementById('success'));
           if (success) {
             success.style.display = 'block';
             try { success.focus(); } catch(e){}
@@ -910,6 +917,41 @@
           if (main) main.setAttribute('tabindex','-1'), main.focus();
         });
       }
+
+      // Smooth-scroll behavior for nav links that point to sections
+      document.querySelectorAll('nav.primary a[href^="#"]').forEach(link=>{
+        link.addEventListener('click', function(e){
+          const href = link.getAttribute('href');
+          if (!href || href === '#') return;
+          const targetId = href.replace(/^#/, '');
+          const target = document.getElementById(targetId);
+          if (target) {
+            e.preventDefault();
+            target.scrollIntoView({behavior:'smooth', block:'center'});
+            history.replaceState(null, '', '#' + targetId);
+            // focus for accessibility
+            setTimeout(()=> {
+              target.setAttribute('tabindex','-1');
+              target.focus();
+              target.removeAttribute('tabindex');
+            }, 420);
+          }
+        });
+      });
+
+      // If page loads with a hash, focus the target
+      window.addEventListener('load', function(){
+        const hash = location.hash.replace('#','');
+        if (!hash) return;
+        const el = document.getElementById(hash);
+        if (el) {
+          setTimeout(()=> {
+            el.setAttribute('tabindex','-1');
+            el.focus();
+            el.removeAttribute('tabindex');
+          }, 300);
+        }
+      });
     })();
   </script>
 
