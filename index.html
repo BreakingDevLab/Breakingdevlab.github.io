@@ -175,6 +175,24 @@
     .types-backdrop, .brand-backdrop, .managed-backdrop, .hardware-backdrop, .modal-backdrop {
       position:fixed; inset:0; display:none; align-items:center; justify-content:center; z-index:2200; background:rgba(2,6,10,0.78); padding:20px;
     }
+
+    /* show/hide backdrops using aria-hidden */
+    .types-backdrop[aria-hidden="false"],
+    .brand-backdrop[aria-hidden="false"],
+    .managed-backdrop[aria-hidden="false"],
+    .hardware-backdrop[aria-hidden="false"],
+    .modal-backdrop[aria-hidden="false"] {
+      display: flex;
+    }
+
+    .types-backdrop[aria-hidden="true"],
+    .brand-backdrop[aria-hidden="true"],
+    .managed-backdrop[aria-hidden="true"],
+    .hardware-backdrop[aria-hidden="true"],
+    .modal-backdrop[aria-hidden="true"] {
+      display: none;
+    }
+
     .types-modal, .brand-modal, .managed-modal, .hardware-modal, .modal {
       width:100%; max-width:880px; border-radius:12px; padding:22px; background:linear-gradient(180deg,var(--panel),#0b1114); border:1px solid rgba(255,255,255,0.04); box-shadow:0 40px 120px rgba(0,0,0,0.7); color:var(--text); max-height:86vh; overflow:auto;
     }
@@ -558,7 +576,7 @@
     </section>
   </main>
 
-  <footer style="padding:20px 0;text-align:center;color:var(--muted);">
+  <footer style="padding:20px 0;text-align:center;color:var(--muted);;">
     <div class="container">
       <p>&copy; 2025 Breaking Dev Lab. All rights reserved.</p>
     </div>
@@ -598,7 +616,7 @@
           <h5>E‑commerce & Online Stores</h5>
           <p>Secure stores with optimized checkout, inventory, and payment integrations for small shops to large catalogs.</p>
           <div class="type-actions">
-            <button class="cta-btn start-quote" data-service="ecommerce" type="button">Start a Quote</button>
+            <button class="cta-btn start-quote" data-service="ecommerce:store" type="button">Start a Quote</button>
           </div>
         </div>
 
@@ -671,6 +689,110 @@
           <p>Reusable components and documentation to keep your product consistent and development-friendly.</p>
           <div class="brand-actions">
             <button class="cta-btn start-quote" data-service="brand:design-system" type="button">Start a Quote</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-nav">
+        <button data-scroll-target="top" class="btn-outline">Home</button>
+        <button data-scroll-target="services" class="btn-outline">Services</button>
+        <button data-scroll-target="about" class="btn-outline">About</button>
+        <button data-scroll-target="contact" class="btn-outline">Contact</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Ecommerce modal (new) -->
+  <div id="ecommerce-backdrop" class="types-backdrop" aria-hidden="true">
+    <div class="types-modal" role="dialog" aria-modal="true" aria-labelledby="ecommerce-title" aria-describedby="ecommerce-desc">
+      <header>
+        <div>
+          <h3 id="ecommerce-title">E‑commerce Solutions</h3>
+          <p id="ecommerce-desc" class="lead">Options for online stores, marketplaces, and subscription commerce — choose the model that fits your business.</p>
+        </div>
+        <div>
+          <button id="ecommerce-close" class="btn-outline" type="button" aria-label="Close ecommerce types">Close</button>
+        </div>
+      </header>
+
+      <div class="types-list" role="list">
+        <div class="type-item" role="listitem">
+          <h5>Small Shop (Single Vendor)</h5>
+          <p>Simple product catalog, optimized checkout, and payment integrations for small inventories.</p>
+          <div class="type-actions">
+            <button class="cta-btn start-quote" data-service="ecommerce:store" type="button">Start a Quote</button>
+          </div>
+        </div>
+
+        <div class="type-item" role="listitem">
+          <h5>Marketplace</h5>
+          <p>Multi-vendor marketplace architecture with vendor onboarding, commissions, and catalog management.</p>
+          <div class="type-actions">
+            <button class="cta-btn start-quote" data-service="ecommerce:marketplace" type="button">Start a Quote</button>
+          </div>
+        </div>
+
+        <div class="type-item" role="listitem">
+          <h5>Subscription Commerce</h5>
+          <p>Recurring billing, member portals, and subscription lifecycle management for recurring revenue models.</p>
+          <div class="type-actions">
+            <button class="cta-btn start-quote" data-service="ecommerce:subscription" type="button">Start a Quote</button>
+          </div>
+        </div>
+
+        <div class="type-item" role="listitem">
+          <h5>Headless Commerce</h5>
+          <p>API-first storefronts and headless checkout for high-performance, flexible frontends.</p>
+          <div class="type-actions">
+            <button class="cta-btn start-quote" data-service="ecommerce:headless" type="button">Start a Quote</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-nav">
+        <button data-scroll-target="top" class="btn-outline">Home</button>
+        <button data-scroll-target="services" class="btn-outline">Services</button>
+        <button data-scroll-target="about" class="btn-outline">About</button>
+        <button data-scroll-target="contact" class="btn-outline">Contact</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Support plans modal (new) -->
+  <div id="support-plans-backdrop" class="managed-backdrop" aria-hidden="true">
+    <div class="managed-modal" role="dialog" aria-modal="true" aria-labelledby="support-plans-title" aria-describedby="support-plans-desc">
+      <header>
+        <div>
+          <h3 id="support-plans-title">Support Plans for Businesses</h3>
+          <p id="support-plans-desc" class="lead">Choose a support plan that matches your operational needs — from basic coverage to enterprise SLAs.</p>
+        </div>
+        <div>
+          <button id="support-plans-close" class="btn-outline" type="button" aria-label="Close support plans">Close</button>
+        </div>
+      </header>
+
+      <div class="managed-list" role="list">
+        <div class="managed-item" role="listitem">
+          <h5>Basic Support</h5>
+          <p>Email support, monthly maintenance windows, and standard response times.</p>
+          <div class="managed-actions">
+            <button class="cta-btn start-quote" data-service="support-plans:basic" type="button">Start a Quote</button>
+          </div>
+        </div>
+
+        <div class="managed-item" role="listitem">
+          <h5>Priority Support</h5>
+          <p>Faster response times, scheduled check-ins, and prioritized incident handling.</p>
+          <div class="managed-actions">
+            <button class="cta-btn start-quote" data-service="support-plans:priority" type="button">Start a Quote</button>
+          </div>
+        </div>
+
+        <div class="managed-item" role="listitem">
+          <h5>Enterprise SLA</h5>
+          <p>Custom SLAs, dedicated account management, on-call engineers, and integration support.</p>
+          <div class="managed-actions">
+            <button class="cta-btn start-quote" data-service="support-plans:enterprise" type="button">Start a Quote</button>
           </div>
         </div>
       </div>
@@ -777,11 +899,14 @@
         const focusable = dialog.querySelectorAll('a,button,input,textarea,select,[tabindex]:not([tabindex="-1"])');
         if (focusable.length) focusable[0].focus();
         if (opener) opener._lastOpener = opener;
+        if (opener) try { opener.setAttribute('aria-expanded','true'); } catch(e){}
       }
       function closeBackdrop(backdrop) {
         if (!backdrop) return;
         backdrop.setAttribute('aria-hidden','true');
         document.body.style.overflow = '';
+        const opener = document.querySelector('[aria-controls="'+(backdrop && backdrop.id)+'"]');
+        if (opener) try { opener.setAttribute('aria-expanded','false'); opener.focus(); } catch(e){}
       }
 
       // Scroll helper
@@ -835,8 +960,6 @@
         closeBtn.addEventListener('click', function(){
           const backdrop = closeBtn.closest('.types-backdrop, .brand-backdrop, .managed-backdrop, .hardware-backdrop, .modal-backdrop');
           closeBackdrop(backdrop);
-          const opener = document.querySelector('[aria-controls="'+(backdrop && backdrop.id)+'"]');
-          if (opener) opener.focus();
         });
       });
 
@@ -845,8 +968,6 @@
         backdrop.addEventListener('click', function(e){
           if (e.target !== backdrop) return;
           closeBackdrop(backdrop);
-          const opener = document.querySelector('[aria-controls="'+backdrop.id+'"]');
-          if (opener) opener.focus();
         });
       });
 
@@ -987,6 +1108,145 @@
         }
       });
     })();
+  </script>
+
+  <!-- Filter & highlight script for showing relevant types when a service card is clicked -->
+  <style>
+    /* small visual highlight for matched items inside modals */
+    .modal .match {
+      border: 1px solid var(--accent);
+      box-shadow: 0 8px 30px rgba(14,165,164,0.06);
+      transform: translateY(-4px);
+    }
+    .modal .dimmed { display: none; opacity: 0.35; pointer-events: none; }
+  </style>
+
+  <script>
+  (function(){
+    /**
+     * Utility: normalize service keys for matching.
+     * Example: "website-creation:business" -> "website-creation"
+     */
+    function servicePrefix(key){
+      if (!key) return '';
+      return key.split(':')[0].toLowerCase();
+    }
+
+    /**
+     * Filter and highlight items inside a modal/backdrop based on serviceKey.
+     * Looks for .start-quote buttons inside the modal and compares their data-service.
+     */
+    function filterModalItems(backdrop, serviceKey){
+      if (!backdrop) return;
+      // find all actionable items inside the modal (type-item, brand-item, managed-item, hardware-item)
+      const itemSelectors = ['.type-item', '.brand-item', '.managed-item', '.hardware-item'];
+      const items = backdrop.querySelectorAll(itemSelectors.join(','));
+      const prefix = servicePrefix(serviceKey);
+
+      // If no prefix (empty), show everything
+      if (!prefix) {
+        items.forEach(it => {
+          it.classList.remove('match');
+          it.classList.remove('dimmed');
+          it.style.display = '';
+        });
+        return;
+      }
+
+      // For each item, check if it contains a .start-quote with a matching data-service
+      items.forEach(item => {
+        const startBtn = item.querySelector('.start-quote[data-service]');
+        let matches = false;
+        if (startBtn) {
+          const ds = (startBtn.getAttribute('data-service') || '').toLowerCase();
+          // match if same prefix or exact match
+          if (ds === prefix || ds.startsWith(prefix + ':') || ds.startsWith(prefix)) matches = true;
+        }
+        if (matches) {
+          item.classList.add('match');
+          item.classList.remove('dimmed');
+          item.style.display = '';
+        } else {
+          // hide non-matching items to keep focus on relevant types
+          item.classList.remove('match');
+          item.classList.add('dimmed');
+          // you can choose to hide completely instead:
+          // item.style.display = 'none';
+        }
+      });
+    }
+
+    /**
+     * Restore modal items to default (remove filters/highlights).
+     */
+    function restoreModalItems(backdrop){
+      if (!backdrop) return;
+      const itemSelectors = ['.type-item', '.brand-item', '.managed-item', '.hardware-item'];
+      const items = backdrop.querySelectorAll(itemSelectors.join(','));
+      items.forEach(it => {
+        it.classList.remove('match');
+        it.classList.remove('dimmed');
+        it.style.display = '';
+      });
+    }
+
+    // Attach a listener to service-card buttons to filter the modal after it opens.
+    document.querySelectorAll('.service-card button[data-service]').forEach(btn => {
+      btn.addEventListener('click', function(){
+        const serviceKey = btn.getAttribute('data-service') || '';
+        const controlsId = btn.getAttribute('aria-controls');
+        if (!controlsId) return;
+        const backdrop = document.getElementById(controlsId);
+        if (!backdrop) return;
+
+        // Wait a short moment for the modal to open (your existing script opens it)
+        setTimeout(() => {
+          filterModalItems(backdrop, serviceKey);
+          // set aria-expanded on the opener for accessibility
+          try { btn.setAttribute('aria-expanded','true'); } catch(e){}
+        }, 60);
+      });
+    });
+
+    // When modal close buttons are clicked, restore the modal items and update aria-expanded
+    document.querySelectorAll('.types-modal .btn-outline, .brand-modal .btn-outline, .managed-modal .btn-outline, .hardware-modal .btn-outline, .modal .btn-outline').forEach(closeBtn => {
+      closeBtn.addEventListener('click', function(){
+        const backdrop = closeBtn.closest('.types-backdrop, .brand-backdrop, .managed-backdrop, .hardware-backdrop, .modal-backdrop');
+        if (backdrop) restoreModalItems(backdrop);
+        // restore aria-expanded on the opener if we can find it
+        const opener = document.querySelector('[aria-controls="'+(backdrop && backdrop.id)+'"]');
+        if (opener) try { opener.setAttribute('aria-expanded','false'); } catch(e){}
+      });
+    });
+
+    // Also restore when clicking the backdrop outside the dialog
+    document.querySelectorAll('.types-backdrop, .brand-backdrop, .managed-backdrop, .hardware-backdrop, .modal-backdrop').forEach(backdrop => {
+      backdrop.addEventListener('click', function(e){
+        if (e.target !== backdrop) return;
+        restoreModalItems(backdrop);
+        const opener = document.querySelector('[aria-controls="'+backdrop.id+'"]');
+        if (opener) try { opener.setAttribute('aria-expanded','false'); } catch(e){}
+      });
+    });
+
+    // If user uses the modal's internal nav to go elsewhere, clear filters too
+    document.querySelectorAll('.modal-nav button[data-scroll-target]').forEach(btn=>{
+      btn.addEventListener('click', function(){
+        const backdrop = btn.closest('.types-backdrop, .brand-backdrop, .managed-backdrop, .hardware-backdrop, .modal-backdrop');
+        if (backdrop) restoreModalItems(backdrop);
+      });
+    });
+
+    // Optional: when a Start-Quote inside a modal is clicked, ensure the selected_service hidden input is set
+    document.querySelectorAll('.start-quote[data-service]').forEach(sbtn=>{
+      sbtn.addEventListener('click', function(){
+        const serviceKey = sbtn.getAttribute('data-service') || '';
+        const selectedInput = document.getElementById('selected_service') || document.getElementById('selected_service_quote');
+        if (selectedInput) selectedInput.value = serviceKey;
+      });
+    });
+
+  })();
   </script>
 
   <script src="/assets/js/tiny-fixes.js" defer></script>
