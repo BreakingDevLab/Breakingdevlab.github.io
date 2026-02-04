@@ -295,7 +295,7 @@
         <h2 id="hero-title">We build secure, elegant digital experiences</h2>
         <p id="hero-desc" class="lead">Breaking Dev Lab crafts modern websites, e-commerce platforms, and reliable repair & support services that help businesses grow with confidence.</p>
 
-        <form id="inline-lead-form" class="lead-capture" aria-label="Quick contact form" action="/api/lead" method="post" novalidate>
+        <form id="inline-lead-form" class="lead-capture" aria-label="Quick contact form" action="https://breakingdevlab-api.onrender.com/api/lead" method="post" novalidate>
           <input type="text" name="name" id="inline-name" placeholder="Your name" aria-label="Your name" required />
           <div class="field-error" aria-live="polite"></div>
 
@@ -475,7 +475,7 @@
           <h3 id="contact-heading" style="color:var(--accent);margin-top:0;">Contact Us</h3>
           <p class="lead" style="margin-top:0;color:var(--muted)">Send a message or request a quote — we’ll reply within 1–2 business days.</p>
 
-          <form id="contact-page-form" action="/api/lead" method="post" class="form-grid" aria-label="Contact form" novalidate>
+          <form id="contact-page-form" action="https://breakingdevlab-api.onrender.com/api/lead" method="post" class="form-grid" aria-label="Contact form" novalidate>
             <div>
               <label for="cp-name">Name</label>
               <input id="cp-name" name="name" type="text" required placeholder="Your full name" />
@@ -485,6 +485,8 @@
             <div>
               <label for="cp-email">Email</label>
               <input id="cp-email" name="email" type="email" required placeholder="you@example.com" />
+<label for="contact">Contact</label>
+<input type="text" id="contact" name="contact" placeholder="Phone or contact" required>
               <div class="field-error" aria-live="polite"></div>
             </div>
 
@@ -538,7 +540,7 @@
         <h3 id="quote-heading" class="section-title" style="color:var(--accent);margin:0 0 12px;font-size:1.4rem">Request a Quote</h3>
 
         <div class="hero-card small">
-          <form id="page-quote-form" class="form-grid" action="/api/quote" method="post" aria-label="Get a quote form" novalidate>
+          <form id="page-quote-form" class="form-grid" action="https://breakingdevlab-api.onrender.com/api/quote" method="post" aria-label="Get a quote form" novalidate>
             <div>
               <label for="pq-name">Name</label>
               <input id="pq-name" name="name" type="text" required placeholder="Your full name" />
@@ -548,6 +550,8 @@
             <div>
               <label for="pq-email">Email</label>
               <input id="pq-email" name="email" type="email" required placeholder="you@example.com" />
+<label for="contact">Contact</label>
+<input type="text" id="contact" name="contact" placeholder="Phone or contact" required>
               <div class="field-error" aria-live="polite"></div>
             </div>
 
