@@ -94,25 +94,35 @@
   position: relative;
 }
 
+@media (max-width: 720px) {
+}
+
+/* Logo overlay that fills the visual block edge-to-edge */
+.hero-visual,
+.visual-area {
+  position: relative;
+}
+
 .hero-visual::after,
 .visual-area::after {
   content: "";
   position: absolute;
-  inset: 4px;                       /* small inner padding; change to 0 if you want edge-to-edge */
+  inset: 0;                         /* fill the entire block */
   background-image: url('images/image-logo-plus.png');
   background-repeat: no-repeat;
-  background-size: contain;         /* scale the logo to fit the available area */
+  background-size: cover;           /* fills the block; may crop to preserve aspect */
   background-position: center center;
   pointer-events: none;
   z-index: 2;
-  border-radius: 0;                 /* remove rounded box */
-  box-shadow: none;                 /* remove shadow */
-  border: none;                     /* remove border */
-  background-color: transparent;    /* ensure no background box */
+  border-radius: 0;                 /* no box shape */
+  box-shadow: none;
+  border: none;
+  background-color: transparent;
 }
 @media (max-width: 720px) {
   .hero-visual::after,
   .visual-area::after {
-    inset: 3px;
+    inset: 0;
+    background-size: cover;
   }
 }
