@@ -1,0 +1,28 @@
+
+/* Visual area logo clipping rules */
+.visual-area {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  height: 320px;
+  margin: 0 auto;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+}
+.visual-area .logo {
+  position: absolute;
+  right: 24px;
+  bottom: 24px;
+  height: 80px;
+  width: auto;
+  z-index: 2;
+  pointer-events: none;
+}
+@media (max-width: 600px) {
+  .visual-area .logo {
+    height: 48px;
+    right: 12px;
+    bottom: 12px;
+  }
+}
