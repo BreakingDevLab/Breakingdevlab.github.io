@@ -66,3 +66,43 @@
     box-shadow: 0 6px 14px rgba(2,6,10,0.12);
   }
 }
+
+/* Logo overlay inside hero-visual / visual-area without altering container size */
+.hero-visual,
+.visual-area {
+  position: relative; /* ensure pseudo-element is positioned relative to container */
+}
+
+/* pseudo-element overlay keeps the existing background and adds the logo */
+.hero-visual::after,
+.visual-area::after {
+  content: "";
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+  width: 140px;                 /* rectangular visible area for the logo */
+  height: 44px;                 /* visible height */
+  background-image: url('images/image-logo-plus.png');
+  background-repeat: no-repeat;
+  background-size: contain;     /* show whole logo without distortion */
+  background-position: center center;
+  pointer-events: none;
+  border-radius: 6px;
+  padding: 4px;
+  box-shadow: 0 6px 18px rgba(2,6,10,0.18);
+  background-color: rgba(255,255,255,0.02);
+  z-index: 2;
+}
+
+/* smaller on narrow screens */
+@media (max-width: 720px) {
+  .hero-visual::after,
+  .visual-area::after {
+    width: 110px;
+    height: 36px;
+    right: 12px;
+    bottom: 12px;
+    padding: 3px;
+    box-shadow: 0 6px 14px rgba(2,6,10,0.12);
+  }
+}
