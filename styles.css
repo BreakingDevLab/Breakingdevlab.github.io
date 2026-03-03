@@ -26,3 +26,22 @@
     bottom: 12px;
   }
 }
+
+/* Force logo back to original size and keep it responsive */
+.visual-area .logo,
+.hero-visual .logo {
+  height: 44px;
+  max-height: 44px;
+  width: auto;
+  object-fit: contain;
+  pointer-events: none;
+}
+
+/* Slightly smaller on small screens */
+@media (max-width: 600px) {
+  .visual-area .logo,
+  .hero-visual .logo {
+    height: 32px;
+    max-height: 32px;
+  }
+}
