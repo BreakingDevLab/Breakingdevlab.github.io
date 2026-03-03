@@ -67,24 +67,34 @@
   position: relative;
 }
 
+@media (max-width: 720px) {
+}
+
+/* Logo overlay: image only, no background box, no border, no shadow */
+.hero-visual,
+.visual-area {
+  position: relative;
+}
+
 .hero-visual::after,
 .visual-area::after {
   content: "";
   position: absolute;
-  inset: 4px;                       /* 4px padding from each edge — change this value if you want tighter/looser fit */
+  inset: 4px;                       /* small inner padding; change to 0 if you want edge-to-edge */
   background-image: url('images/image-logo-plus.png');
   background-repeat: no-repeat;
-  background-size: contain;         /* show the whole logo while fitting the available area */
+  background-size: contain;         /* scale the logo to fit the available area */
   background-position: center center;
   pointer-events: none;
   z-index: 2;
-  border-radius: 4px;
-  box-shadow: 0 6px 18px rgba(2,6,10,0.08);
-  background-color: rgba(255,255,255,0.00);
+  border-radius: 0;                 /* remove rounded box */
+  box-shadow: none;                 /* remove shadow */
+  border: none;                     /* remove border */
+  background-color: transparent;    /* ensure no background box */
 }
 @media (max-width: 720px) {
   .hero-visual::after,
   .visual-area::after {
-    inset: 3px;                     /* slightly smaller padding on mobile */
+    inset: 3px;
   }
 }
