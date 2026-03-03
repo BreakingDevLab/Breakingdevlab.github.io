@@ -28,6 +28,12 @@
 }
 
 /* Constrain logo to the visual/hero area without changing the container size */
+
+/* Mobile adjustments */
+@media (max-width: 720px) {
+}
+
+/* Constrain logo to the visual/hero area without changing the container size */
 .hero-visual .logo,
 .visual-area .logo {
   position: absolute;
