@@ -21,11 +21,6 @@
 @media (max-width: 600px) {
 }
 
-/* Strong override: smaller, rectangular, elegant logo (high specificity + !important) */
-
-/* Mobile */
-@media (max-width: 600px) {
-}
 
 /* Constrain logo to the visual/hero area without changing the container size */
 
@@ -34,37 +29,9 @@
 }
 
 /* Constrain logo to the visual/hero area without changing the container size */
-.hero-visual .logo,
-.visual-area .logo {
-  position: absolute;
-  right: 20px;
-  bottom: 20px;
-  height: auto;
-  width: auto;
-  max-height: calc(100% - 40px);   /* keep some padding from edges */
-  max-width: 38%;                  /* prevents the logo from taking too much horizontal space */
-  object-fit: contain;             /* show whole logo without distortion */
-  object-position: center center;
-  border-radius: 6px;
-  padding: 4px;
-  background: rgba(255,255,255,0.02);
-  box-shadow: 0 6px 18px rgba(2,6,10,0.18);
-  border: 1px solid rgba(255,255,255,0.03);
-  z-index: 2;
-  pointer-events: none;
-}
 
 /* Mobile adjustments */
 @media (max-width: 720px) {
-  .hero-visual .logo,
-  .visual-area .logo {
-    max-height: calc(100% - 24px);
-    max-width: 46%;
-    right: 12px;
-    bottom: 12px;
-    padding: 3px;
-    box-shadow: 0 6px 14px rgba(2,6,10,0.12);
-  }
 }
 
 /* Logo overlay inside hero-visual / visual-area without altering container size */
@@ -74,35 +41,42 @@
 }
 
 /* pseudo-element overlay keeps the existing background and adds the logo */
+
+/* smaller on narrow screens */
+@media (max-width: 720px) {
+}
+
+/* Logo fills the visual block exactly while preserving the block's background */
+.hero-visual,
+.visual-area {
+  position: relative;
+}
+
+/* Use a pseudo-element so the HTML and background image remain unchanged.
+   The logo will scale to fit the container while preserving aspect ratio. */
 .hero-visual::after,
 .visual-area::after {
   content: "";
   position: absolute;
-  right: 20px;
-  bottom: 20px;
-  width: 140px;                 /* rectangular visible area for the logo */
-  height: 44px;                 /* visible height */
+  inset: 20px;                       /* keep 20px padding inside the block */
   background-image: url('images/image-logo-plus.png');
   background-repeat: no-repeat;
-  background-size: contain;     /* show whole logo without distortion */
+  background-size: contain;          /* scale the logo to fit the available area */
   background-position: center center;
   pointer-events: none;
-  border-radius: 6px;
-  padding: 4px;
-  box-shadow: 0 6px 18px rgba(2,6,10,0.18);
-  background-color: rgba(255,255,255,0.02);
   z-index: 2;
+  border-radius: 6px;
+  box-shadow: 0 6px 18px rgba(2,6,10,0.12);
+  background-color: rgba(255,255,255,0.00);
 }
 
-/* smaller on narrow screens */
+/* If you prefer a fixed padding on one side, change inset to: inset: 0 20px 20px 0; */
+
+/* Mobile adjustments keep the same fit but reduce padding */
 @media (max-width: 720px) {
   .hero-visual::after,
   .visual-area::after {
-    width: 110px;
-    height: 36px;
-    right: 12px;
-    bottom: 12px;
-    padding: 3px;
-    box-shadow: 0 6px 14px rgba(2,6,10,0.12);
+    inset: 12px;
+    box-shadow: 0 6px 14px rgba(2,6,10,0.10);
   }
 }
